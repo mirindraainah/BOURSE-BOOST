@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html lang="en" class="material-style layout-fixed">
+
+<head>
+    <title>BourseBoost | paiement en ligne de bourses</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.css">
+    <link rel="stylesheet" href="assets/fonts/linearicons.css">
+    <link rel="stylesheet" href="assets/fonts/open-iconic.css">
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="assets/fonts/feather.css">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="assets/css/bootstrap-material.css">
+    <link rel="stylesheet" href="assets/css/shreerang-material.css">
+    <link rel="stylesheet" href="assets/css/uikit.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="assets/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/libs/flot/flot.css">
+
+</head>
+
+<body>
+    <!-- [ Preloader ] Start -->
+    <div class="page-loader">
+        <div class="bg-primary"></div>
+    </div>
+    <!-- [ Preloader ] End -->
+
+    <!-- [ Layout wrapper ] Start -->
+    <div class="layout-wrapper layout-2">
+        <div class="layout-inner">
+            <!-- [ Layout sidenav ] Start -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark">
+                <!-- Brand demo (see assets/css/demo/demo.css) -->
+                <div class="app-brand demo">
+                    <span class="app-brand-logo demo">
+                        <img src="assets/img/logo.png" alt="Brand Logo" class="img-fluid">
+                    </span>
+                    <a th:href="@{/}" class="app-brand-text demo sidenav-text font-weight-normal ml-2">BourseBoost</a>
+                    <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                        <i class="ion ion-md-menu align-middle"></i>
+                    </a>
+                </div>
+                <div class="sidenav-divider mt-0"></div>
+
+                <!-- Links -->
+                <ul class="sidenav-inner py-1">
+
+                    <!-- Dashboards -->
+                    <li class="sidenav-item">
+                        <a th:href="@{/}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-home"></i>
+                            <div>Accueil</div>
+                            <div class="pl-1 ml-auto">
+                                <div class="badge badge-danger"></div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Layouts -->
+                    <li class="sidenav-divider mb-1"></li>
+                    <li class="sidenav-header small font-weight-semibold"></li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/etudiants}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-users"></i>
+                            <div>Etudiants</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/montants}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-layers"></i>
+                            <div>Niveau / Montants</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item active">
+                        <a th:href="@{/paiements}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-user-check"></i>
+                            <div>Paiements</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/retardataires}" class="sidenav-link">
+                            <i class="sidenav-icon lnr lnr-hourglass"></i>
+                            <div>Retardataires</div>
+                        </a>
+                    </li>
+                
+                 
+                    <!-- Pages -->
+                    <li class="sidenav-divider mb-1"></li>
+                    <li class="sidenav-header small font-weight-semibold">Autre</li>
+                  
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-anchor"></i>
+                            <div>Aide</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- [ Layout sidenav ] End -->
+            <!-- [ Layout container ] Start -->
+            <div class="layout-container">
+                <!-- [ Layout navbar ( Header ) ] Start -->
+                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-white container-p-x" id="layout-navbar">
+
+                    <!-- Brand demo (see assets/css/demo/demo.css) -->
+                    <a class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <img src="assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid">
+                        </span>
+                        <span class="app-brand-text demo font-weight-normal ml-2">BourseBoost</span>
+                    </a>
+
+                    <!-- Sidenav toggle (see assets/css/demo/demo.css) -->
+                    <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
+                        <a class="nav-item nav-link px-0 mr-lg-4" href="javascript:">
+                            <i class="ion ion-md-menu text-large align-middle"></i>
+                        </a>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#layout-navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                        <!-- Divider -->
+                        <hr class="d-lg-none w-100 my-2">
+
+                        <div class="navbar-nav align-items-lg-center">
+                            <!-- Search -->
+                            <label class="nav-item navbar-text navbar-search-box p-0 active">
+                                <i class="feather icon-search navbar-icon align-middle"></i>
+                                <span class="navbar-search-input pl-2">
+                                    <input type="text" class="form-control navbar-text mx-2" placeholder="Recherche...">
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="navbar-nav align-items-lg-center ml-auto">
+                            <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
+                                    <i class="feather icon-bell navbar-icon align-middle"></i>
+                                    <span class="badge badge-danger badge-dot indicator"></span>
+                                    <span class="d-lg-none align-middle">&nbsp; Notifications</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="bg-primary text-center text-white font-weight-bold p-3">
+                                        Pas de notifications
+                                    </div>
+                                    <div class="list-group list-group-flush">
+                                        <a href="javascript:" class="list-group-item list-group-item-action media d-flex align-items-center">
+                                            <div class="ui-icon ui-icon-sm feather icon-home bg-secondary border-0 text-white"></div>
+                                            <div class="media-body line-height-condenced ml-3">
+                                                <div class="text-dark">Vous êtes connecté</div>
+                                                <div class="text-light small mt-1">
+                                                    Auccune nouvelle depuis la dernière fois
+                                                </div>
+                                                <div class="text-light small mt-1">Il y a un mobile</div>
+                                            </div>
+                                        </a>
+                                   
+                                    </div>
+                                    <a href="javascript:" class="d-block text-center text-light small p-2 my-1">Tout afficher</a>
+                                </div>
+                            </div>
+
+                            <div class="demo-navbar-messages nav-item dropdown mr-lg-3">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
+                                    <i class="feather icon-mail navbar-icon align-middle"></i>
+                                    <span class="badge badge-success badge-dot indicator"></span>
+                                    <span class="d-lg-none align-middle">&nbsp; Messages</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="bg-primary text-center text-white font-weight-bold p-3">
+                                        Pas de messages
+                                    </div>
+                                    <div class="list-group list-group-flush">
+    
+                                    </div>
+
+                                    <a href="javascript:" class="d-block text-center text-light small p-2 my-1">Tout afficher</a>
+                                </div>
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="nav-item d-none d-lg-block text-big font-weight-light line-height-1 opacity-25 mr-3 ml-1">|</div>
+                            <div class="demo-navbar-user nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
+                                        <img src="assets/img/avatars/utilisateur2.jpg" alt class="d-block ui-w-30 rounded-circle">
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">Nomeniavo</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form th:action="@{/logout}" method="post">
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="feather icon-power text-danger"></i> &nbsp; Se déconnecter
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- [ Layout navbar ( Header ) ] End -->
+
+                <!-- [ Layout content ] Start -->
+                <div class="layout-content">
+
+                 
+                    <!-- [ content ] Start -->
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <h4 class="font-weight-bold py-3 mb-0">Retardataires</h4>
+                        <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">Vues</a></li>
+                                <li class="breadcrumb-item active">Liste</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="">
+                            <!-- 1st row Start -->
+                            <div class="demo-inline-spacing mt-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPaye"> <i class="icon feather icon-plus mr-3"></i>Faire un paiement</button>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Nombre : <span class="text-info" th:text="${payeCount}"></span></div>
+                                <table class="table table-hover card-table">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Matricule</th>
+                                            <th>Etudiant</th>
+                                            <th>Année Universitaire</th>
+                                            <th>Date</th>
+                                            <th>Nombre de Mois</th>
+                                            <th>Actions</th>                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="paiement: ${paiements}">
+                                            <!-- <td th:text="${paiement.idpaye}">ID</td> -->
+                                            <td th:text="${paiement.etudiant.matricule}">Matricule</td>
+                                            <td th:text="${paiement.etudiant.nom}">Etudiant</td>
+                                            <td th:text="${paiement.annee_univ}">Année universitaire</td>
+                                            <td th:text="${@dateFormatter.format(paiement.date)}">Date</td>
+                                            <td th:text="${paiement.nbr_mois}">Nombre de mois</td>
+                                            <td class="d-flex">
+                                                <a th:href="@{/paiements/recu/{idpaye}(idpaye=${paiement.idpaye})}">
+                                                    <i class="lnr lnr-file-add navbar-icon align-middle mr-3"></i>
+                                                </a>
+                                                
+                                                
+                                                <a href="#" class="bleu"
+                                                    th:data-idpaye="${paiement.idpaye}" 
+                                                    th:data-etudiant_matricule="${paiement.etudiant.matricule}"
+                                                    th:data-nom="${paiement.etudiant.nom}" 
+                                                    th:data-annee_univ="${paiement.annee_univ}"
+                                                    th:data-date="${paiement.date}"
+                                                    th:data-nbr_mois="${paiement.nbr_mois}"
+                                                    th:data-mois_depart="${paiement.mois_depart}"
+                                                    th:data-equipement="${paiement.equipement ? 1 : 0}"
+                                                    data-toggle="modal" 
+                                                    data-target="#editPaye" title="Modifier">
+                                                  <i class="lnr lnr-pencil navbar-icon align-middle mr-3"></i>
+                                                </a>
+
+                                                <a th:href="@{/paiements/delete/{idpaye}(idpaye=${paiement.idpaye})}" class="bleu" onclick="return confirmDelete(event, this);" title="Supprimer">
+                                                    <i class="lnr lnr-trash navbar-icon align-middle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody> 
+                                </table>
+                            </div>                         
+                            <!-- 1st row Start -->
+                        </div>                  
+                    </div>
+                    
+                    <!-- [ content ] End -->                  
+                </div>
+                <!-- [ Layout content ] End -->
+            </div>
+            <!-- [ Layout container ] End -->
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <!-- [ Layout wrapper] End -->
+
+    <!-- Modal ajout pour paiement -->
+    <div class="modal fade" id="addPaye" tabindex="-1" role="dialog" aria-labelledby="addPayeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPayeLabel">Faire un paiement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addPayeForm" th:action="@{/paiements/add}" th:object="${payer}" method="post">
+                    <div class="modal-body">
+                        <!-- Form content -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em;">
+                            <div>
+                                <div class="form-group">
+                                    <label for="etudiantSelect">Etudiant</label>
+                                    <select class="form-control" id="etudiantSelect" th:field="*{etudiant.matricule}" onchange="updateAnneeUniv()">
+                                        <option value="" disabled selected>Sélectionnez l'étudiant</option>
+                                        <option th:each="etudiant : ${etudiants}"
+                                                th:value="${etudiant.matricule}"
+                                                th:data-annee-univ="${etudiant.annee_univ}"
+                                                th:text="${etudiant.nom}">Etudiant</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="annee_univ">Année Universitaire:</label>
+                                    <input type="text" class="form-control" id="annee_univ" th:field="*{annee_univ}" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="datetime-local" class="form-control" id="date" th:field="*{date}" required disabled>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="nbr_mois">Nombre de Mois:</label>
+                                    <input type="number" class="form-control" id="nbr_mois" th:field="*{nbr_mois}" required>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label for="mois_select">Mois de Départ (Sélectionnez):</label>
+                                    <select class="form-control" id="mois_select" onchange="updateMoisDepart()">
+                                        <option value="" disabled selected>Sélectionnez le mois</option>
+                                        <option value="1">Janvier</option>
+                                        <option value="2">Février</option>
+                                        <option value="3">Mars</option>
+                                        <option value="4">Avril</option>
+                                        <option value="5">Mai</option>
+                                        <option value="6">Juin</option>
+                                        <option value="7">Juillet</option>
+                                        <option value="8">Août</option>
+                                        <option value="9">Septembre</option>
+                                        <option value="10">Octobre</option>
+                                        <option value="11">Novembre</option>
+                                        <option value="12">Décembre</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="visibility: hidden;">
+                                    <label for="mois_depart">Mois de Départ:</label>
+                                    <input type="number" class="form-control" id="mois_depart" th:field="*{mois_depart}" min="1" max="12" required>
+                                    <small class="form-text text-muted">Saisissez un nombre de 1 à 12.</small>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="addEquipement" th:field="*{equipement}">
+                        <label for="addEquipement">Ajouter équipement</label>
+                    </div>
+
+                    </div>
+                    <div class="modal-footer" style="">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Payer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal modification pour paiement -->
+    <div class="modal fade" id="editPaye" tabindex="-1" role="dialog" aria-labelledby="editPayeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPayeLabel">Faire un paiement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editPayeForm" method="post" th:action="@{/paiements/update}" th:object="${payer}">
+                    <div class="modal-body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3em;">
+                            <div>
+                                <input type="hidden" id="editIdpaye" th:field="*{idpaye}">
+                                <input type="hidden" id="editEtudiantMatricule" th:field="*{etudiant.matricule}">
+                                <div class="form-group">
+                                    <label for="editNomEtudiant">Etudiant</label>
+                                    <input type="text" class="form-control" id="editNomEtudiant" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editAnnee_univ">Année Universitaire:</label>
+                                    <input type="text" class="form-control" id="editAnnee_univ" th:field="*{annee_univ}" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editDate">Date</label>
+                                    <input type="datetime-local" class="form-control" id="editDate" th:field="*{date}" required disabled>
+                                </div>
+                            </div>
+    
+                            <div>
+                                <div class="form-group">
+                                    <label for="editNbr_mois">Nombre de Mois:</label>
+                                    <input type="number" class="form-control" id="editNbr_mois" th:field="*{nbr_mois}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editMois_select">Mois de Départ (Sélectionnez):</label>
+                                    <select class="form-control" id="editMois_select" onchange="updateEditMoisDepart()">
+                                        <option value="" disabled selected>Sélectionnez le mois</option>
+                                        <option value="1">Janvier</option>
+                                        <option value="2">Février</option>
+                                        <option value="3">Mars</option>
+                                        <option value="4">Avril</option>
+                                        <option value="5">Mai</option>
+                                        <option value="6">Juin</option>
+                                        <option value="7">Juillet</option>
+                                        <option value="8">Août</option>
+                                        <option value="9">Septembre</option>
+                                        <option value="10">Octobre</option>
+                                        <option value="11">Novembre</option>
+                                        <option value="12">Décembre</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="visibility: hidden;">
+                                    <label for="editMois_depart">Mois de Départ:</label>
+                                    <input type="number" class="form-control" id="editMois_depart" th:field="*{mois_depart}" min="1" max="12" required>
+                                    <small class="form-text text-muted">Saisissez un nombre de 1 à 12.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="checkbox" id="editEquipement" th:field="*{equipement}">
+                            <label for="editEquipement">Ajouter équipement</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+                              
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // mettre date d'aujourd'hui dans le formulaire
+            $('#addPaye').on('show.bs.modal', function (event) {
+                var now = new Date();
+                var year = now.getFullYear();
+                var month = (now.getMonth() + 1).toString().padStart(2, '0');
+                var day = now.getDate().toString().padStart(2, '0');
+                var hours = now.getHours().toString().padStart(2, '0');
+                var minutes = now.getMinutes().toString().padStart(2, '0');
+    
+                var formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+                document.getElementById('date').value = formattedDate;
+            });
+    
+               // valeurs dans formulaire de modification
+            $('#editPaye').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var idpaye = button.data('idpaye');
+                var etudiant_matricule = button.data('etudiant_matricule');
+                var nom = button.data('nom');
+                var annee_univ = button.data('annee_univ');
+                var date = button.data('date');
+                var nbr_mois = button.data('nbr_mois');
+                var mois_depart = button.data('mois_depart');
+                var equipement = button.data('equipement');
+
+                var modal = $(this);
+                modal.find('#editIdpaye').val(idpaye);
+                modal.find('#editEtudiantMatricule').val(etudiant_matricule);
+                modal.find('#editNomEtudiant').val(nom);
+                modal.find('#editAnnee_univ').val(annee_univ);
+                modal.find('#editDate').val(date);
+                modal.find('#editNbr_mois').val(nbr_mois);
+                modal.find('#editMois_select').val(mois_depart);
+                modal.find('#editMois_depart').val(mois_depart);
+                modal.find('#editEquipement').prop('checked', equipement);
+            });
+            
+        // suppression réussie
+        const deleted = /*[[${deleted}]]*/ false;
+            if (deleted) {
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Suppression effectuée',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 4500,
+                    toast: true
+                });
+            }
+
+            // ajout réussi
+            const added = /*[[${added}]]*/ false;
+            if (added) {
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: 'Ajout effectué',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 4500,
+                    toast: true
+                });
+            }
+
+            // modification réussie
+            const updated = /*[[${updated}]]*/ false;
+            if (updated) {
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'info',
+                    title: 'Modification effectuée',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 4500,
+                    toast: true
+                });
+            }
+        // réinitialisation du select étudiant
+        document.getElementById('etudiantSelect').selectedIndex = 0;
+        document.getElementById('annee_univ').value = "";
+        });
+    
+        // mise à jour annee_univ selon l'étudiant
+        function updateAnneeUniv() {
+            var etudiantSelect = document.getElementById("etudiantSelect");
+            var anneeUnivInput = document.getElementById("annee_univ");
+            var selectedOption = etudiantSelect.options[etudiantSelect.selectedIndex];
+            var anneeUniv = selectedOption.getAttribute("data-annee-univ");
+            anneeUnivInput.value = anneeUniv;
+        }
+    
+        // mise à jour mois sélectionné
+        function updateMoisDepart() {
+            var selectBox = document.getElementById("mois_select");
+            var inputBox = document.getElementById("mois_depart");
+            inputBox.value = selectBox.value;
+        }
+
+        function updateEditMoisDepart() {
+        var selectBox = document.getElementById("editMois_select");
+        var inputBox = document.getElementById("editMois_depart");
+        inputBox.value = selectBox.value;
+    }
+    
+        // confirmation suppression
+        function confirmDelete(event, el) {
+            event.preventDefault();
+            const href = el.getAttribute('href');
+    
+            Swal.fire({
+                title: 'Êtes-vous sûr?',
+                text: "Vous ne pourrez pas revenir en arrière!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0073ff8c',
+                cancelButtonColor: '#8897AA',
+                confirmButtonText: 'Oui, supprimer!',
+                cancelButtonText: 'Annuler'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = href;
+                }
+            })
+        }
+    </script>
+
+    <!-- Core scripts -->
+    <script src="assets/js/pace.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/libs/popper/popper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/sidenav.js"></script>
+    <script src="assets/js/layout-helpers.js"></script>
+    <script src="assets/js/material-ripple.js"></script>
+
+    <!-- Libs -->
+    <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/libs/eve/eve.js"></script>
+    <script src="assets/libs/flot/flot.js"></script>
+    <script src="assets/libs/flot/curvedLines.js"></script>
+    <script src="assets/libs/chart-am4/core.js"></script>
+    <script src="assets/libs/chart-am4/charts.js"></script>
+    <script src="assets/libs/chart-am4/animated.js"></script>
+
+    <!-- Demo -->
+    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+    <script src="assets/js/pages/dashboards_index.js"></script>
+    <script src="assets/js/sweetalert2.min.js"></script>
+</body>
+
+</html>

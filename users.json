@@ -1,0 +1,11 @@
+[ {
+  "password" : "$2a$10$CFbexCdT7cynGIOUH7su7ee5SaACK81tNmIkCyX0q71RzIfje9nHy",
+  "username" : "yaelsherah@gmail.com",
+  "authorities" : [ {
+    "authority" : "ROLE_ADMIN"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+} ]

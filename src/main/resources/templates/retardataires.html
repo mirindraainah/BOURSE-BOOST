@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="en" class="material-style layout-fixed">
+
+<head>
+    <title>BourseBoost | paiement en ligne de bourses</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="assets/fonts/fontawesome.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.css">
+    <link rel="stylesheet" href="assets/fonts/linearicons.css">
+    <link rel="stylesheet" href="assets/fonts/open-iconic.css">
+    <link rel="stylesheet" href="assets/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="assets/fonts/feather.css">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="assets/css/bootstrap-material.css">
+    <link rel="stylesheet" href="assets/css/shreerang-material.css">
+    <link rel="stylesheet" href="assets/css/uikit.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="assets/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/libs/flot/flot.css">
+
+</head>
+
+<body>
+    <!-- [ Preloader ] Start -->
+    <div class="page-loader">
+        <div class="bg-primary"></div>
+    </div>
+    <!-- [ Preloader ] End -->
+
+    <!-- [ Layout wrapper ] Start -->
+    <div class="layout-wrapper layout-2">
+        <div class="layout-inner">
+            <!-- [ Layout sidenav ] Start -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark">
+                <!-- Brand demo (see assets/css/demo/demo.css) -->
+                <div class="app-brand demo">
+                    <span class="app-brand-logo demo">
+                        <img src="assets/img/logo.png" alt="Brand Logo" class="img-fluid">
+                    </span>
+                    <a th:href="@{/}" class="app-brand-text demo sidenav-text font-weight-normal ml-2">BourseBoost</a>
+                    <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                        <i class="ion ion-md-menu align-middle"></i>
+                    </a>
+                </div>
+                <div class="sidenav-divider mt-0"></div>
+
+                <!-- Links -->
+                <ul class="sidenav-inner py-1">
+
+                    <!-- Dashboards -->
+                    <li class="sidenav-item">
+                        <a th:href="@{/}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-home"></i>
+                            <div>Accueil</div>
+                            <div class="pl-1 ml-auto">
+                                <div class="badge badge-danger"></div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!-- Layouts -->
+                    <li class="sidenav-divider mb-1"></li>
+                    <li class="sidenav-header small font-weight-semibold"></li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/etudiants}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-users"></i>
+                            <div>Etudiants</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/montants}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-layers"></i>
+                            <div>Niveau / Montants</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a th:href="@{/paiements}" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-user-check"></i>
+                            <div>Paiements</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item active">
+                        <a th:href="@{/retardataires}" class="sidenav-link">
+                            <i class="sidenav-icon lnr lnr-hourglass"></i>
+                            <div>Retardataires</div>
+                        </a>
+                    </li>
+                
+                 
+                    <!-- Pages -->
+                    <li class="sidenav-divider mb-1"></li>
+                    <li class="sidenav-header small font-weight-semibold">Autre</li>
+                  
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-anchor"></i>
+                            <div>Aide</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- [ Layout sidenav ] End -->
+            <!-- [ Layout container ] Start -->
+            <div class="layout-container">
+                <!-- [ Layout navbar ( Header ) ] Start -->
+                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-white container-p-x" id="layout-navbar">
+
+                    <!-- Brand demo (see assets/css/demo/demo.css) -->
+                    <a class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <img src="assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid">
+                        </span>
+                        <span class="app-brand-text demo font-weight-normal ml-2">BourseBoost</span>
+                    </a>
+
+                    <!-- Sidenav toggle (see assets/css/demo/demo.css) -->
+                    <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
+                        <a class="nav-item nav-link px-0 mr-lg-4" href="javascript:">
+                            <i class="ion ion-md-menu text-large align-middle"></i>
+                        </a>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#layout-navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                        <!-- Divider -->
+                        <hr class="d-lg-none w-100 my-2">
+
+                        <div class="navbar-nav align-items-lg-center">
+                            <!-- Search -->
+                            <label class="nav-item navbar-text navbar-search-box p-0 active">
+                                <i class="feather icon-search navbar-icon align-middle"></i>
+                                <span class="navbar-search-input pl-2">
+                                    <input type="text" class="form-control navbar-text mx-2" placeholder="Recherche...">
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="navbar-nav align-items-lg-center ml-auto">
+                            <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
+                                    <i class="feather icon-bell navbar-icon align-middle"></i>
+                                    <span class="badge badge-danger badge-dot indicator"></span>
+                                    <span class="d-lg-none align-middle">&nbsp; Notifications</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="bg-primary text-center text-white font-weight-bold p-3">
+                                        Pas de notifications
+                                    </div>
+                                    <div class="list-group list-group-flush">
+                                        <a href="javascript:" class="list-group-item list-group-item-action media d-flex align-items-center">
+                                            <div class="ui-icon ui-icon-sm feather icon-home bg-secondary border-0 text-white"></div>
+                                            <div class="media-body line-height-condenced ml-3">
+                                                <div class="text-dark">Vous êtes connecté</div>
+                                                <div class="text-light small mt-1">
+                                                    Auccune nouvelle depuis la dernière fois
+                                                </div>
+                                                <div class="text-light small mt-1">Il y a un mobile</div>
+                                            </div>
+                                        </a>
+                                   
+                                    </div>
+                                    <a href="javascript:" class="d-block text-center text-light small p-2 my-1">Tout afficher</a>
+                                </div>
+                            </div>
+
+                            <div class="demo-navbar-messages nav-item dropdown mr-lg-3">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
+                                    <i class="feather icon-mail navbar-icon align-middle"></i>
+                                    <span class="badge badge-success badge-dot indicator"></span>
+                                    <span class="d-lg-none align-middle">&nbsp; Messages</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="bg-primary text-center text-white font-weight-bold p-3">
+                                        Pas de messages
+                                    </div>
+                                    <div class="list-group list-group-flush">
+    
+                                    </div>
+
+                                    <a href="javascript:" class="d-block text-center text-light small p-2 my-1">Tout afficher</a>
+                                </div>
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="nav-item d-none d-lg-block text-big font-weight-light line-height-1 opacity-25 mr-3 ml-1">|</div>
+                            <div class="demo-navbar-user nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
+                                        <img src="assets/img/avatars/utilisateur2.jpg" alt class="d-block ui-w-30 rounded-circle">
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">Nomeniavo</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form th:action="@{/logout}" method="post">
+                                        <button type="submit" class="dropdown-item">
+                                            <i class="feather icon-power text-danger"></i> &nbsp; Se déconnecter
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- [ Layout navbar ( Header ) ] End -->
+
+                <!-- [ Layout content ] Start -->
+                <div class="layout-content">
+
+                 
+                    <!-- [ content ] Start -->
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <h4 class="font-weight-bold py-3 mb-0">Paiements</h4>
+                        <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">Vues</a></li>
+                                <li class="breadcrumb-item active">Liste</li>
+                            </ol>
+                        </div>
+                        <div class="card" style="overflow-x: auto;">
+                            <div class="card-header" style="display: flex; justify-content: space-between;">
+                                <select id="monthSelect" class="form-control col-md-4">
+                                    <option value="" disabled selected>Sélectionnez un mois de paiement</option>
+                                    <option value="JANUARY">Janvier</option>
+                                    <option value="FEBRUARY">Février</option>
+                                    <option value="MARCH">Mars</option>
+                                    <option value="APRIL">Avril</option>
+                                    <option value="MAY">Mai</option>
+                                    <option value="JUNE">Juin</option>
+                                    <option value="JULY">Juillet</option>
+                                    <option value="AUGUST">Août</option>
+                                    <option value="SEPTEMBER">Septembre</option>
+                                    <option value="OCTOBER">Octobre</option>
+                                    <option value="NOVEMBER">Novembre</option>
+                                    <option value="DECEMBER">Décembre</option>
+                                </select>
+                                <div>
+                                    Nombre : <span class="text-info" id="retardatairesCount" th:text="${retardatairesCount}"></span>
+                                </div>
+                               
+                            </div>
+                            <table class="table table-hover card-table" style="overflow-x: auto;">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Matricule</th>
+                                        <th>Nom</th>
+                                        <th>Sexe</th>
+                                        <th>Date de Naissance</th>
+                                        <th>Institution</th>
+                                        <th>Niveau</th>
+                                        <th>Email</th>
+                                        <th>Année Univ</th>
+                                        <th>E-Mail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="retardatairesTableBody">
+                                    <tr th:each="etudiant : ${retardataires}">
+                                        <td th:text="${etudiant.matricule}"></td>
+                                        <td th:text="${etudiant.nom}"></td>
+                                        <td th:text="${etudiant.sexe}"></td>
+                                        <td th:text="${@dateFormatter.formatDateOnly(etudiant.datenais)}"></td>
+                                        <td th:text="${etudiant.institution}"></td>
+                                        <td th:text="${etudiant.niveau}"></td>
+                                        <td th:text="${etudiant.mail}"></td>
+                                        <td th:text="${etudiant.annee_univ}"></td>
+                                        <td>
+                                            <a th:href="@{'/sendEmail/' + ${etudiant.mail}}" title="Envoyer Email" class="sendEmail">
+                                                <i class="lnr lnr-envelope"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- [ content ] End -->
+
+                   
+                   
+                </div>
+                <!-- [ Layout content ] End -->
+            </div>
+            <!-- [ Layout container ] End -->
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <!-- [ Layout wrapper] End -->    
+    
+    
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonction pour attacher l'événement click pour les liens d'envoi d'email
+            function attachEmailSendEvent() {
+                document.querySelectorAll('.sendEmail').forEach(function(link) {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            toast: true,
+                            position: 'bottom-end',
+                            title: 'Envoi en cours...',
+                            showConfirmButton: false,
+                            text: 'Veuillez patienter pendant l\'envoi de l\'email.',
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+    
+                        fetch(link.href)
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.text();
+                                }
+                                throw new Error('Network response was not ok.');
+                            })
+                            .then(() => {
+                            Swal.close();
+                            Swal.fire({
+                                title: 'Succès!',
+                                text: 'L\'email a été envoyé avec succès.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                            })
+                    });
+                });
+            }
+    
+            // click pour les liens d'envoi d'email au chargement initial de la page
+            attachEmailSendEvent();
+    
+            // filtre mois
+            document.getElementById('monthSelect').addEventListener('change', function() {
+                var selectedMonth = this.value;
+    
+                fetch('/retardataires/' + selectedMonth)
+                    .then(response => response.json())
+                    .then(data => {
+                        var tableBody = document.getElementById('retardatairesTableBody');
+                        tableBody.innerHTML = '';
+    
+                        function formatDateOnly(dateString) {
+                            var date = new Date(dateString);
+                            var year = date.getFullYear();
+                            var month = ('0' + (date.getMonth() + 1)).slice(-2); 
+                            var day = ('0' + date.getDate()).slice(-2);
+                            return `${day}-${month}-${year}`;
+                        }
+    
+                        data.forEach(function(etudiant) {
+                            var row = document.createElement('tr');
+    
+                            row.innerHTML = `
+                                <td>${etudiant.matricule}</td>
+                                <td>${etudiant.nom}</td>
+                                <td>${etudiant.sexe}</td>
+                                <td>${formatDateOnly(etudiant.datenais)}</td>
+                                <td>${etudiant.institution}</td>
+                                <td>${etudiant.niveau}</td>
+                                <td>${etudiant.mail}</td>
+                                <td>${etudiant.annee_univ}</td>
+                                <td><a href="/sendEmail/${etudiant.mail}" title="Envoyer Email" class="sendEmail"><i class="lnr lnr-envelope"></i></a></td>
+                            `;
+    
+                            tableBody.appendChild(row);
+                        });
+                        document.getElementById('retardatairesCount').textContent = data.length;
+    
+                        // click pour les liens d'envoi d'email après filtre
+                        attachEmailSendEvent();
+                    });
+            });
+        });
+    </script>
+    
+    
+
+    <!-- Core scripts -->
+    <script src="assets/js/pace.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/libs/popper/popper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/sidenav.js"></script>
+    <script src="assets/js/layout-helpers.js"></script>
+    <script src="assets/js/material-ripple.js"></script>
+
+    <!-- Libs -->
+    <script src="assets/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/libs/eve/eve.js"></script>
+    <script src="assets/libs/flot/flot.js"></script>
+    <script src="assets/libs/flot/curvedLines.js"></script>
+    <script src="assets/libs/chart-am4/core.js"></script>
+    <script src="assets/libs/chart-am4/charts.js"></script>
+    <script src="assets/libs/chart-am4/animated.js"></script>
+
+    <!-- Demo -->
+    <script src="assets/js/demo.js"></script><script src="assets/js/analytics.js"></script>
+    <script src="assets/js/pages/dashboards_index.js"></script>
+    <script src="assets/js/sweetalert2.min.js"></script>
+</body>
+
+</html>
